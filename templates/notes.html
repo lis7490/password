@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дневник программиста</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+        form {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 6px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1> Дневник программиста</h1>
+        <a href="/">На главную</a>
+        
+        <!-- Форма для добавления новых записей -->
+        <form method="POST">
+            <h2>Добавить новую запись</h2>
+            <input type="text" name="title" placeholder="Заголовок записи" required>
+            <textarea name="text" placeholder="Текст записи" rows="4" required></textarea>
+            <button type="submit">Сохранить запись</button>
+
+        </form>
+
+        <h2> Все записи</h2>
+        
+        {% if notes %}
+            <!-- Таблица с записями -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Заголовок</th>
+                        <th>Текст</th>
+                        <th>Удаление</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for note in notes %}
+                    <tr>
+                        <td><strong>{{ note.title }}</strong></td>
+                        <td>{{ note.text }}</td>
+                        <td><form action="{{ url_for('delete_note', note_id=note.id) }}" method="POST" style="display: inline;">
+                    <button type="submit" class="delete-btn" onclick="return confirm('Удалить эту запись?')">
+                        Удалить
+                    </button>
+                </form></td>
+
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="empty-message">Записей пока нет. Добавьте первую запись!</p>
+        {% endif %}
+    </div>
+
+</body>
+</html>

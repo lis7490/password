@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 50px auto; padding: 20px; }
+        .welcome { margin-bottom: 20px; }
+        .menu { display: flex; gap: 15px; margin-bottom: 30px; }
+        .menu a {
+            background-color: #007bff; color: white; padding: 10px 20px;
+            text-decoration: none; border-radius: 4px;
+        }
+        .menu a:hover { background-color: #0056b3; }
+        .logout { margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <div class="welcome">
+        <h2>Добро пожаловать!</h2>
+        <p>Вы успешно вошли в систему.</p>
+    </div>
+
+    <div class="menu">
+        <a href="{{ url_for('diary') }}">Дневник программиста</a>
+        <a href="#">Мой профиль</a>
+        <a href="#">Настройки</a>
+    </div>
+
+    <div class="logout">
+        <a href="{{ url_for('logout') }}">Выйти из системы</a>
+    </div>
+</body>
+</html>
