@@ -5,66 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Дневник программиста</title>
     <link rel="stylesheet" href="/static/css/index.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        h1, h2 {
-            color: #333;
-            text-align: center;
-        }
-        form {
-            margin-bottom: 30px;
-            padding: 20px;
-            background: #f9f9f9;
-            border-radius: 6px;
-        }
-        input, textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        button {
-            background: #4CAF50;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background: #45a049;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
 
-    </style>
 </head>
 <body>
     <div class="container">
@@ -96,15 +37,13 @@
                 <tbody>
                     {% for note in notes %}
                     <tr>
-                        <td><strong>{{ note.title }}</strong></td>
-                        <td>{{ note.text }}</td>
+                        <td align='left'><strong>{{ note.title }}</strong></td>
+                        <td align='left'>{{ note.text }}</td>
                         <td><form action="{{ url_for('delete_note', note_id=note.id) }}" method="POST" style="display: inline;">
                     <button type="submit" class="delete-btn" onclick="return confirm('Удалить эту запись?')">
                         Удалить
                     </button>
-                </form></td>
-
-
+                    </form></td>
                     </tr>
                     {% endfor %}
                 </tbody>
